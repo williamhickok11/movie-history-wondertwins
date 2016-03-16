@@ -1,9 +1,6 @@
 <div class="input-group search-bar">
-  <input type="text" 
-         ng-model="search" 
-         ng-model-options="{ debounce: 800 }"
-         placeholder="Enter full movie name" 
-         style="width: 400px; margin-left: 25px;"/>
+  <input type="text" ng-model="search" ng-model-options="{ debounce: 800 }" placeholder="Enter full movie name" style="width: 400px; margin-left: 25px;"/>
+ 	<button ng-click="searchMovie()">Search</button>
 </div>
 <div class="container" style="margin-top: 20px;">
 		<div class="row">	

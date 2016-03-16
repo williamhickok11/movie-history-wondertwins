@@ -11,18 +11,18 @@ MovieHistory.controller("UnwatchedCtrl", [
     // Default property values for keys bound to input fields
     // $scope.songSearchText = {name: "", artist: "", album: ""};
     // $scope.query = "";
-    $scope.unwatchedMovies = [];
+    $scope.movies = [];
 
     // Invoke the promise that reads from Firebase
     movieFactory().then(
       // Handle resolve() from the promise
       movieObject => Object.keys(movieObject).forEach(key => {
         movieObject[key].id = key;
-        if (!movieObject[key].Watched){
-          $scope.unwatchedMovies.push(movieObject[key]);
-        }
-        console.log($scope.unwatchedMovies);
-        $scope.selectedMovie = $scope.unwatchedMovies.filter(movie => movie.id === $routeParams.movieId)[0];
+        // if (!movieObject[key].Watched){
+        // }
+        $scope.movies.push(movieObject[key]);
+        console.log($scope.movies);
+        // $scope.selectedMovie = $scope.movies.filter(movie => movie.id === $routeParams.movieId)[0];
       }),
       // Handle reject() from the promise
       err => console.log(err)

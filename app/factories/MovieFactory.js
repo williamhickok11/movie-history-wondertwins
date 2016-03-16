@@ -1,12 +1,12 @@
 "use strict";
 
-MovieHistory.factory("movieFactory", ($q, $http) =>
+MovieHistory.factory("movieFactory", ($q, $http, firebaseURL) =>
   () =>
     $q((resolve, reject) => 
       $http
-        .get("https://wonder-twins.firebaseio.com/movies.json")
-        .success(
-          movieObject => resolve(movieObject),
+        .get(`${firebaseURL}/movies/.json`)
+        .then(
+          movieObject => resolve(movieObject.data),
           error => reject(error)
         )
     )

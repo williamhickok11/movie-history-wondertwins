@@ -1,6 +1,8 @@
 "use strict";
 
 let MovieHistory = angular.module("MovieApp", ["ngRoute", "firebase"])
+  // define my personal firebase URL as a constant to be referenced later as firebaseURL
+  .constant('firebaseURL', "https://nssmoviesapp.firebaseio.com");
 
 /*
   Define a promise for any view that needs an authenticated user
@@ -70,7 +72,7 @@ MovieHistory.run([
   "$location",
 
   ($location) => {
-    let movieHistoryRef = new Firebase("https://wonder-twins.firebaseio.com");
+    let movieHistoryRef = new Firebase("https://nssmoviesapp.firebaseio.com");
 
     movieHistoryRef.onAuth(authData => {
       if (!authData) {
