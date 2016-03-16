@@ -1,0 +1,17 @@
+  <div ng-include="'partials/banner.html'" style="margin-top: 15px; margin-left: 25px;"></div>
+  <div class="container" style="margin-top: 20px;">
+		<div class="row">	
+
+	    <div ng-repeat="movie in watchedMovies" class="col m-3">
+	    	<div class="card hoverable">
+	    	  <div class="chip right">
+    				Delete
+    				<i class="material-icons" style="cursor: pointer">close</i>
+  				</div>
+					<div class="card-image">	
+	     			<img src="{{ movie.Poster }}">
+	     		</div>
+				</div>
+	    </div>
+		</div>
+  </div>
