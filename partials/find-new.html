@@ -5,5 +5,22 @@
          placeholder="Enter full movie name" 
          style="width: 400px; margin-left: 25px;"/>
 </div>
-
-
+<div class="container" style="margin-top: 20px;">
+		<div class="row">	
+	    	<div class="col m-3">
+		    	<div class="card hoverable">
+		    	  <div class="chip right">
+	    				Delete
+	    				<i class="material-icons" style="cursor: pointer">close</i>
+	  				</div>
+						<div class="card-image" ng-model="newMovie.Poster">	
+		     			<img src="{{ newMovie.Poster }}">
+		     		</div>
+		     		<div class="card-action">
+	            <a ng-click="addMovie()">Add to Watchlist</a>
+	          </div>	
+					</div>
+				</div>
+	    </div>
+		</div>
+  </div>
