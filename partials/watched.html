@@ -4,10 +4,7 @@
 
 	    <div ng-repeat="movie in watchedMovies" class="col m-3">
 	    	<div class="card hoverable">
-	    	  <div class="chip right">
-    				Delete
-    				<i class="material-icons" style="cursor: pointer">close</i>
-  				</div>
+	    	  <a class="waves-effect waves-teal btn-flat right" ng-click="deleteMovie(movie.id)" id="{{ movie.id }}">Delete</a>
 					<div class="card-image">	
 	     			<img src="{{ movie.Poster }}">
 	     		</div>

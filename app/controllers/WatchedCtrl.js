@@ -2,10 +2,12 @@
 
 MovieHistory.controller("WatchedCtrl", [
   "$scope",
+  "$routeParams",
   "$location",
   "movieFactory",
+  "$http",
 
-  function ($scope, $location, movieFactory) {
+  function ($scope, $routeParams, $location, movieFactory, $http) {
     // Default property values for keys bound to input fields
     // $scope.songSearchText = {name: "", artist: "", album: ""};
     // $scope.query = "";
@@ -20,10 +22,15 @@ MovieHistory.controller("WatchedCtrl", [
           $scope.watchedMovies.push(movieObject[key]);
         }
         console.log($scope.watchedMovies);
+        $scope.selectedMovie = $scope.watchedMovies.filter(movie => movie.id === $routeParams.movieId)[0];
       }),
       // Handle reject() from the promise
       err => console.log(err)
     );
 
+   $scope.deleteMovie = (eventId) => $http
+        .delete(`https://wonder-twins.firebaseio.com/movies/${eventId}.json`)
+        .then(() => $location.url("/fake"));
+       
   }
 ]);

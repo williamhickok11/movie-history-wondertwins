@@ -50,15 +50,15 @@ MovieHistory.config(["$routeProvider",
         templateUrl: "partials/find-new.html",
         controller: "FindCtrl",
         resolve: { isAuth }
-      })//.
+      }).
       // when("/songs/:songId", {
       //   templateUrl: "partials/song-brief.html",
       //   controller: "SongDetailCtrl",
       //   resolve: { isAuth }
       // }).
-      // otherwise({
-      //   redirectTo: "/"
-      // });
+      otherwise({
+        redirectTo: "/unwatched"
+      });
   }]);
 
 /*
