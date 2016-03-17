@@ -2,9 +2,9 @@
     <div class="nav-wrapper teal">
       <!-- Nav Search Start -->
       <div class="input-field left">
-        <input type="search" required placeholder="Search OMBb and your tracked movies...">
+        <input type="search" ng-keypress="($event.charCode==13)?myFunction():return" autofocus required placeholder="Search OMBb and your tracked movies..." ng-model="search">
         <label for="search"><i class="material-icons">search</i></label>
-        <button ng-click="searchMovie()">Search</button>
+        <!-- <button ng-click="searchMovie()">Search</button> -->
         <i class="material-icons">close</i>
       </div>
 

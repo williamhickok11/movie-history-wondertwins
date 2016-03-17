@@ -30,14 +30,14 @@ MovieHistory.config(["$routeProvider",
       //   controller: "SongCtrl",
       //   resolve: { isAuth }
       // }).
-      when("/watched", {
-        templateUrl: "partials/watched.html",
-        controller: "WatchedCtrl",
-        resolve: { isAuth }
-      }).
-      when("/unwatched", {
-        templateUrl: "partials/unwatched.html",
-        controller: "UnwatchedCtrl",
+      // when("/watched", {
+      //   templateUrl: "partials/watched.html",
+      //   controller: "WatchedCtrl",
+      //   resolve: { isAuth }
+      // }).
+      when("/movies", {
+        templateUrl: "partials/movies.html",
+        controller: "MoviesCtrl",
         resolve: { isAuth }
       }).
       when("/login", {
@@ -59,7 +59,7 @@ MovieHistory.config(["$routeProvider",
       //   resolve: { isAuth }
       // }).
       otherwise({
-        redirectTo: "/unwatched"
+        redirectTo: "/movies"
       });
   }]);
 
