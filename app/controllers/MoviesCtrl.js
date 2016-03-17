@@ -6,7 +6,6 @@ MovieHistory.controller("MoviesCtrl", [
   "$location",
   "movieFactory",
   "authFactory",
-  "firebaseURL",
   "$http",
   "firebaseURL",
 
