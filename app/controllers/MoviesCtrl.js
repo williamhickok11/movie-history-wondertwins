@@ -1,44 +1,36 @@
 "use strict";
 
-MovieHistory.controller('FindCtrl', [
+MovieHistory.controller("MoviesCtrl", [
   "$scope",
+  "$routeParams",
   "$location",
+  "movieFactory",
+  "authFactory",
   "$http",
 
-  function ($scope, $location, $http){
+  function ($scope, $routeParams, $location, movieFactory, authFactory, $http) {
+
 
     $scope.userID = authFactory.userID();
 
+    $scope.movies = [];
     $scope.rawMovie = {};
-    // $scope.newMovie = {
-    //   Actors: "",
-    //   Poster: "",
-    //   Rating: 0,
-    //   Title: "",
-    //   Watched: false,
-    //   Year:"",
-    //   id: ""
-    // };
 
-    // $scope.$watch('search', function() {
-    //   if ($scope.search !== undefined){
-    //     fetch();
-    //   }
-    // });
+    // Invoke the promise that reads from Firebase
+    movieFactory().then(
+      // Handle resolve() from the promise
+      movieObject => Object.keys(movieObject).forEach(key => {
+        movieObject[key].id = key;
+        // if (!movieObject[key].Watched){
+        // }
+        $scope.movies.push(movieObject[key]);
+        console.log($scope.movies);
+        // $scope.selectedMovie = $scope.movies.filter(movie => movie.id === $routeParams.movieId)[0];
+      }),
+      // Handle reject() from the promise
+      err => console.log(err)
+    );
 
-    // function searchMovie () {
-    //   $http.get("http://www.omdbapi.com/?t=" + $scope.search )
-    //   .then(function(response){ 
-    //     $scope.rawMovie = response.data; 
-    //     console.log($scope.rawMovie);
-    //     $scope.newMovie.Actors = $scope.rawMovie.Actors;
-    //     $scope.newMovie.Poster = $scope.rawMovie.Poster;
-    //     $scope.newMovie.Title = $scope.rawMovie.Title;
-    //     $scope.newMovie.Year = $scope.rawMovie.Year;
-    //     console.log($scope.newMovie);
-    //   });
-    //   $scope.selectedMovie = $scope.newMovie.filter(movie => movie.id === $routeParams.movieId)[0];
-    // }
 
     $scope.searchMovie = function() {
 
@@ -78,5 +70,12 @@ MovieHistory.controller('FindCtrl', [
     };
 
 
+      //The cards have Id's equal to their keys in firebase, but I cant add them to the delete function properly
+    $scope.deleteMovie = (eventId) => $http
+        .delete(`https://wonder-twins.firebaseio.com/movies/${eventId}.json`)
+        // .then(() => $location.url("/fake"));
+        .then(() => console.log(`movie successfully deleted`));
+      
+
   }
-  ]);
+]);

@@ -1,4 +1,4 @@
-  <div ng-include="'partials/banner.html'" style="margin-top: 15px; margin-left: 25px;"></div>
+  <!-- <div ng-include="'partials/banner.html'" style="margin-top: 15px; margin-left: 25px;"></div> -->
   <div class="container" style="margin-top: 20px;">
 		<div class="row">	
 
@@ -9,7 +9,10 @@
 	     			<img src="{{ movie.Poster }}">
 	     		</div>
 	     		<div class="card-action">
-            <a ng-click="makeWatched()">Add to Watched</a>
+            <!-- Watchlist for OMDb search -->
+            <a ng-click="makeWatched()">Add to Watchlist</a>
+            <!-- Watchlist for OMDb search -->
+            <!-- <a ng-click="someRatingFunction()">Rate</a> -->
             <!-- Add 10 Stars rating layout -->
           </div>	
 				</div>
