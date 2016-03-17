@@ -6,21 +6,18 @@ MovieHistory.controller("LoginCtrl",
   "$location",
   "$http",
   "authFactory",
+  "firebaseURL",
+
 
 
   function ($scope, $location, $http, authFactory, firebaseURL)  {
 
     // Local variables
-    let ref = new Firebase("https://wonder-twins.firebaseio.com");
+    let ref = new Firebase(firebaseURL);
 
     // Variables on $scope for use in DOM
     $scope.account = { email: "", password: "" };
     $scope.message = "";
-
-    // Unauthenticate user when /logout path used
-    if ($location.path() === "/logout") {
-      ref.unauth();
-    }
 
     /*
       Attempt to register a new user account.
@@ -48,7 +45,7 @@ MovieHistory.controller("LoginCtrl",
       authFactory
         .authenticate($scope.account)
         .then(() => {
-          $location.path("/watched");
+          $location.path("/movies");
           $scope.$apply();  // Needed for $location.path() to succeed
         });
   }
