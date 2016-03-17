@@ -1,13 +1,14 @@
-<nav>
+<nav ng-controller="MoviesCtrl">
     <div class="nav-wrapper teal">
       <!-- Nav Search Start -->
       <div class="input-field left">
-        <input type="search" ng-keypress="($event.charCode==13)?myFunction():return" autofocus required placeholder="Search OMBb and your tracked movies..." ng-model="search">
+        <!-- <input type="search" ng-keypress="($event.charCode==13)?searchMovie():return" autofocus required placeholder="Search OMBb and your tracked movies..." ng-model="search"> -->
+        <!-- ng-model with the parent scoped  -->
+        <input type="search" ng-enter="searchMovie()" autofocus required placeholder="Search OMBb and your tracked movies..." ng-model="$parent.search">
         <label for="search"><i class="material-icons">search</i></label>
         <!-- <button ng-click="searchMovie()">Search</button> -->
         <i class="material-icons">close</i>
       </div>
-
 
       <!-- <a href="#" class="brand-logo right">Movie History</a> -->
       <ul class="right">
@@ -15,7 +16,7 @@
         <!-- <li><a href="#/search">Search Your Movies</a></li> -->
         <!-- <li><a href="#/login">Login/Register</a></li> -->
         <li><a href="#/login" ng-if="!isAuthenticated()">Login/Register</a></li>
-        <li><a href="#/logout" ng-if="isAuthenticated()">Logout</a></li>
+        <li><a href="#/logout" ng-if="isAuthenticated()" ng-click="logout()">Logout</a></li>
       </ul>
     </div>
   </nav>
