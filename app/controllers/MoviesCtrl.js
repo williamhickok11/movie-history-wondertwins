@@ -6,10 +6,11 @@ MovieHistory.controller("MoviesCtrl", [
   "$location",
   "movieFactory",
   "authFactory",
-  "firebaseURL",
   "$http",
+  "firebaseURL",
 
-  function ($scope, $routeParams, $location, movieFactory, authFactory, firebaseURL, $http) {
+
+  function ($scope, $routeParams, $location, movieFactory, authFactory, $http, firebaseURL) {
 
 
     $scope.userID = authFactory.userID();
@@ -36,16 +37,35 @@ MovieHistory.controller("MoviesCtrl", [
 
 
     $scope.searchMovie = function() {
+
       console.log(`searchMovie Run`);
       console.log(`$scope.search: `, $scope.search);
       $http.get(`http://www.omdbapi.com/?t=${$scope.$parent.search}&y=&plot=short&r=json`)
-        .then(function(response){ 
-          $scope.rawMovie = response.data; 
+        .then(function(response){
+          $scope.rawMovie = response.data;
+
           console.log(`$scope.rawMovie: `, $scope.rawMovie);
         });
 
     };
 
+    $scope.starRating = function (movieId, num) {
+      console.log("movieId", movieId);
+      console.log("num", num);
+      console.log("$scope.movies", $scope.movies);
+      // loop through $scope.movies
+      var movie = $scope.movies.filter(function(movie) {
+        return movie.id === movieId;
+      })[0];
+      movie.rating = num;
+      console.log("movie", movie);
+      $http
+        .put(`https://nssmoviesapp.firebaseio.com/movies/${movieId}.json`, movie)
+        .then(() => function(response) {
+          console.log("response", response);
+          console.log("response.data", response.data);
+        });
+    }
 
     $scope.addMovie = function () {
 
@@ -55,7 +75,7 @@ MovieHistory.controller("MoviesCtrl", [
 
         // Remember to stringify objects/arrays before
         // sending them to an API
-        
+
         JSON.stringify({
           name: $scope.rawMovie.Title,
           year: $scope.rawMovie.Year,
@@ -79,7 +99,7 @@ MovieHistory.controller("MoviesCtrl", [
         .delete(`${firebaseURL}/${eventId}.json`)
         // .then(() => $location.url("/fake"));
         .then(() => console.log(`movie successfully deleted`));
-      
+
 
   }
 ]);
