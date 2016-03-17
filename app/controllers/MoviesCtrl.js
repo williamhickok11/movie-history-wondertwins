@@ -6,15 +6,19 @@ MovieHistory.controller("MoviesCtrl", [
   "$location",
   "movieFactory",
   "authFactory",
+  "firebaseURL",
   "$http",
   "firebaseURL",
+
 
   function ($scope, $routeParams, $location, movieFactory, authFactory, $http, firebaseURL) {
 
 
     $scope.userID = authFactory.userID();
 
+    // used to ng-repeat in movies html (tracked movies)
     $scope.movies = [];
+    // used to ng-show in movies html (untracked movie) and in the add movie function
     $scope.rawMovie = {};
 
     // Invoke the promise that reads from Firebase
@@ -25,8 +29,8 @@ MovieHistory.controller("MoviesCtrl", [
         // if (!movieObject[key].Watched){
         // }
         $scope.movies.push(movieObject[key]);
-        console.log($scope.movies);
         // $scope.selectedMovie = $scope.movies.filter(movie => movie.id === $routeParams.movieId)[0];
+        console.log("$scope.movies", $scope.movies);
       }),
       // Handle reject() from the promise
       err => console.log(err)
@@ -35,9 +39,12 @@ MovieHistory.controller("MoviesCtrl", [
 
     $scope.searchMovie = function() {
 
-      $http.get(`http://www.omdbapi.com/?t=${$scope.search}&y=&plot=short&r=json`)
+      console.log(`searchMovie Run`);
+      console.log(`$scope.search: `, $scope.search);
+      $http.get(`http://www.omdbapi.com/?t=${$scope.$parent.search}&y=&plot=short&r=json`)
         .then(function(response){
           $scope.rawMovie = response.data;
+
           console.log(`$scope.rawMovie: `, $scope.rawMovie);
         });
 
@@ -65,7 +72,7 @@ MovieHistory.controller("MoviesCtrl", [
 
       // POST the song to Firebase
       $http.post(
-        "https://wonder-twins.firebaseio.com/movies.json",
+        `${firebaseURL}/movies.json`,
 
         // Remember to stringify objects/arrays before
         // sending them to an API
@@ -82,7 +89,7 @@ MovieHistory.controller("MoviesCtrl", [
 
       // The $http.post() method returns a promise, so you can use then()
       ).then(
-        () => $location.url("/unwatched"),      // Handle resolve
+        () => $location.url("/movies"),      // Handle resolve
         (response) => console.log(response)  // Handle reject
       );
     };
@@ -90,7 +97,7 @@ MovieHistory.controller("MoviesCtrl", [
 
       //The cards have Id's equal to their keys in firebase, but I cant add them to the delete function properly
     $scope.deleteMovie = (eventId) => $http
-        .delete(`https://wonder-twins.firebaseio.com/movies/${eventId}.json`)
+        .delete(`${firebaseURL}/${eventId}.json`)
         // .then(() => $location.url("/fake"));
         .then(() => console.log(`movie successfully deleted`));
 
