@@ -1,9 +1,14 @@
 "use strict";
 
-MovieHistory.factory("authFactory", function ()  {
-  let ref = new Firebase("https://wonder-twins.firebaseio.com");
+MovieHistory.factory("authFactory", (firebaseURL) => {
+  let ref = new Firebase(firebaseURL);
 
   return {
+
+    userID () {
+      return ref.getAuth().uid;
+    },
+
     /*
       Determine if the client is authenticated
      */

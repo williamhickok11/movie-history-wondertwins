@@ -18,11 +18,11 @@ MovieHistory.controller("WatchedCtrl", [
       // Handle resolve() from the promise
       movieObject => Object.keys(movieObject).forEach(key => {
         movieObject[key].id = key;
-        if (movieObject[key].Watched){
-          $scope.watchedMovies.push(movieObject[key]);
-        }
+        // if (movieObject[key].Watched){
+        // }
+        $scope.watchedMovies.push(movieObject[key]);
         console.log($scope.watchedMovies);
-        $scope.selectedMovie = $scope.watchedMovies.filter(movie => movie.id === $routeParams.movieId)[0];
+        // $scope.selectedMovie = $scope.watchedMovies.filter(movie => movie.id === $routeParams.movieId)[0];
       }),
       // Handle reject() from the promise
       err => console.log(err)

@@ -1,11 +1,21 @@
 <nav>
     <div class="nav-wrapper teal">
-      <a href="#" class="brand-logo right">Movie History</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="#/new-movies">Find New Movies</a></li>
-        <li><a href="#/search">Search Your Movies</a></li>
-        <li><a href="#/login">Login</a></li>
-        <li><a href="#/logout">Logout</a></li>
+      <!-- Nav Search Start -->
+      <div class="input-field left">
+        <input type="search" required placeholder="Search OMBb and your tracked movies...">
+        <label for="search"><i class="material-icons">search</i></label>
+        <button ng-click="searchMovie()">Search</button>
+        <i class="material-icons">close</i>
+      </div>
+
+
+      <!-- <a href="#" class="brand-logo right">Movie History</a> -->
+      <ul class="right">
+        <!-- <li><a href="#/new-movies">Find New Movies</a></li> -->
+        <!-- <li><a href="#/search">Search Your Movies</a></li> -->
+        <!-- <li><a href="#/login">Login/Register</a></li> -->
+        <li><a href="#/login" ng-if="!isAuthenticated()">Login/Register</a></li>
+        <li><a href="#/logout" ng-if="isAuthenticated()">Logout</a></li>
       </ul>
     </div>
   </nav>
