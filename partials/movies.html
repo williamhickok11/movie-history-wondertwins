@@ -14,8 +14,44 @@
             <!-- Watchlist for OMDb search -->
             <!-- <a ng-click="someRatingFunction()">Rate</a> -->
             <!-- Add 10 Stars rating layout -->
-          </div>	
-				</div>
+          </div>
+        <!-- STARS -->
+        <span class="starRating">
+          <h5>Rating:</h5>
+          <div class="rating">
+            <span ng-click="starRating(movie.id, 10)">☆</span>
+            <span ng-click="starRating(movie.id, 9)">☆</span>
+            <span ng-click="starRating(movie.id, 8)">☆</span>
+            <span ng-click="starRating(movie.id, 7)">☆</span>
+            <span ng-click="starRating(movie.id, 6)">☆</span>
+            <span ng-click="starRating(movie.id, 5)">☆</span>
+            <span ng-click="starRating(movie.id, 4)">☆</span>
+            <span ng-click="starRating(movie.id, 3)">☆</span>
+            <span ng-click="starRating(movie.id, 2)">☆</span>
+            <span ng-click="starRating(movie.id, 1)">☆</span>
+          </div>
+          <!-- <input id="rating1{{movie.id}}" type="radio" name="rating" value="1" ng-click="starRating(movie.id)">
+          <label for="rating1"></label>
+          <input id="rating2{{movie.id}}" type="radio" name="rating" value="2" ng-click="starRating(movie.id)">
+          <label for="rating2"></label>
+          <input id="rating3{{movie.id}}" type="radio" name="rating" value="3" ng-click="starRating(movie.id)">
+          <label for="rating3"></label>
+          <input id="rating4{{movie.id}}" type="radio" name="rating" value="4" ng-click="starRating(movie.id)">
+          <label for="rating4"></label>
+          <input id="rating5{{movie.id}}" type="radio" name="rating" value="5" ng-click="starRating(movie.id)">
+          <label for="rating5"></label>
+          <input id="rating6{{movie.id}}" type="radio" name="rating" value="6" ng-click="starRating(movie.id)">
+          <label for="rating6"></label>
+          <input id="rating7{{movie.id}}" type="radio" name="rating" value="7" ng-click="starRating(movie.id)">
+          <label for="rating7"></label>
+          <input id="rating8{{movie.id}}" type="radio" name="rating" value="8" ng-click="starRating(movie.id)">
+          <label for="rating8"></label>
+          <input id="rating9{{movie.id}}" type="radio" name="rating" value="9" ng-click="starRating(movie.id)">
+          <label for="rating9"></label>
+          <input id="rating10{{movie.id}}" type="radio" name="rating" value="10" ng-click="starRating(movie.id)">
+          <label for="rating10"></label> -->
+        </span>
+        </div>
 	    </div>
 		</div>
   </div>
