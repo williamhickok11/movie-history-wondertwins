@@ -18,7 +18,7 @@ MovieHistory.controller("MoviesCtrl", [
     // used to ng-repeat in movies html (tracked movies)
     $scope.movies = [];
     // used to ng-show in movies html (untracked movie) and in the add movie function
-    $scope.rawMovie = {};
+    $scope.rawMovie = "";
 
     // Invoke the promise that reads from Firebase
     movieFactory().then(
@@ -43,10 +43,10 @@ MovieHistory.controller("MoviesCtrl", [
       $http.get(`http://www.omdbapi.com/?t=${$scope.$parent.search}&y=&plot=short&r=json`)
         .then(function(response){
           $scope.rawMovie = response.data;
-
           console.log(`$scope.rawMovie: `, $scope.rawMovie);
-        });
 
+        });
+        $scope.$parent.search = '';
     };
 
     $scope.starRating = function (movieId, num) {
@@ -54,7 +54,7 @@ MovieHistory.controller("MoviesCtrl", [
       console.log("num", num);
       console.log("$scope.movies", $scope.movies);
       // loop through $scope.movies
-      var movie = $scope.movies.filter(function(movie) {
+      let movie = $scope.movies.filter(function(movie) {
         return movie.id === movieId;
       })[0];
       movie.rating = num;
