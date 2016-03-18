@@ -14,7 +14,7 @@ This directive allows us to pass a function in on an enter key to do what we wan
                 scope.$apply(function (){
                     scope.$eval(attrs.ngEnter);
                 });
- 
+
                 event.preventDefault();
             }
         });

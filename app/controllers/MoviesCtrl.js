@@ -6,6 +6,7 @@ MovieHistory.controller("MoviesCtrl", [
   "$location",
   "movieFactory",
   "authFactory",
+
   "$http",
   "firebaseURL",
 
@@ -35,6 +36,33 @@ MovieHistory.controller("MoviesCtrl", [
       err => console.log(err)
     );
 
+
+    $scope.clearFilters = function(){
+      // $('.posterContainer').removeAttr('ng-hide');
+      $('.posterContainer').removeAttr('ng-show');
+    }
+    $scope.filterUnwatched = function(){
+      // $('.posterContainer').removeAttr('ng-show');
+      $('.posterContainer').attr('ng-show', '!movie.watched');
+    }
+    $scope.filterWatched = function(){
+      // $('.posterContainer').removeAttr('ng-hide');
+      $('.posterContainer').attr('ng-show', 'movie.watched');
+    }
+
+    $scope.makeWatched = function(movieId) {
+      var movie = $scope.movies.filter(function(movie) {
+        return movie.id === movieId;
+      })[0];
+      movie.watched = true;
+      console.log("movie", movie);
+      $http
+        .put(`https://nssmoviesapp.firebaseio.com/movies/${movieId}.json`, movie)
+        .then(() => function(response) {
+          console.log("response", response);
+          console.log("response.data", response.data);
+        });
+    }
 
     $scope.searchMovie = function() {
 

@@ -2,7 +2,7 @@
 
 MovieHistory.factory("movieFactory", ($q, $http, firebaseURL) =>
   () =>
-    $q((resolve, reject) => 
+    $q((resolve, reject) =>
       $http
         .get(`${firebaseURL}/movies/.json`)
         .then(
