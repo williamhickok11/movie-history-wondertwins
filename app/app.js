@@ -42,16 +42,6 @@ let isAuth = (authFactory) => new Promise((resolve, reject) => {
 MovieHistory.config(["$routeProvider",
   function ($routeProvider) {
     $routeProvider.
-      // when("/", {
-      //   templateUrl: "partials/song-list.html",
-      //   controller: "SongCtrl",
-      //   resolve: { isAuth }
-      // }).
-      // when("/watched", {
-      //   templateUrl: "partials/watched.html",
-      //   controller: "WatchedCtrl",
-      //   resolve: { isAuth }
-      // }).
       when("/movies", {
         templateUrl: "partials/movies.html",
         controller: "MoviesCtrl",
@@ -70,11 +60,6 @@ MovieHistory.config(["$routeProvider",
         controller: "FindCtrl",
         resolve: { isAuth }
       }).
-      // when("/songs/:songId", {
-      //   templateUrl: "partials/song-brief.html",
-      //   controller: "SongDetailCtrl",
-      //   resolve: { isAuth }
-      // }).
       otherwise({
         redirectTo: "/movies"
       });

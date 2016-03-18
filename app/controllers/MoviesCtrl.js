@@ -12,13 +12,12 @@ MovieHistory.controller("MoviesCtrl", [
 
   function ($scope, $routeParams, $location, movieFactory, authFactory, $http, firebaseURL) {
 
-
     $scope.userID = authFactory.userID();
 
     // used to ng-repeat in movies html (tracked movies)
     $scope.movies = [];
     // used to ng-show in movies html (untracked movie) and in the add movie function
-    $scope.rawMovie = "";
+    $scope.rawMovie;
 
     // Invoke the promise that reads from Firebase
     movieFactory().then(
@@ -40,13 +39,13 @@ MovieHistory.controller("MoviesCtrl", [
 
       console.log(`searchMovie Run`);
       console.log(`$scope.search: `, $scope.search);
-      $http.get(`http://www.omdbapi.com/?t=${$scope.$parent.search}&y=&plot=short&r=json`)
+      $http.get(`http://www.omdbapi.com/?t=${$scope.search}&y=&plot=short&r=json`)
         .then(function(response){
           $scope.rawMovie = response.data;
           console.log(`$scope.rawMovie: `, $scope.rawMovie);
 
         });
-        $scope.$parent.search = '';
+        $scope.search = '';
     };
 
     $scope.starRating = function (movieId, num) {
@@ -95,10 +94,11 @@ MovieHistory.controller("MoviesCtrl", [
 
 
       //The cards have Id's equal to their keys in firebase, but I cant add them to the delete function properly
-    $scope.deleteMovie = (eventId) => $http
-        .delete(`${firebaseURL}/${eventId}.json`)
+    $scope.deleteMovie = function (eventId) { 
+      $http.delete(`${firebaseURL}/${eventId}.json`)
         // .then(() => $location.url("/fake"));
         .then(() => console.log(`movie successfully deleted`));
+      }
 
 
   }

@@ -10,10 +10,6 @@ MovieHistory.controller("PageCtrl",
 
   ($scope, $location, $http, authFactory, firebaseURL) => {
 
-    $scope.tester = () => { console.log("tester function run"); };
-
-    $scope.search = "";
-
     // Local variables
     let ref = new Firebase(firebaseURL);
 
