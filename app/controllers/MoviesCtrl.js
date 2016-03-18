@@ -53,18 +53,33 @@ MovieHistory.controller("MoviesCtrl", [
       console.log("movieId", movieId);
       console.log("num", num);
       console.log("$scope.movies", $scope.movies);
+     
       // loop through $scope.movies
       var movie = $scope.movies.filter(function(movie) {
         return movie.id === movieId;
       })[0];
+     
       movie.rating = num;
+     
       console.log("movie", movie);
+     
       $http
         .put(`https://nssmoviesapp.firebaseio.com/movies/${movieId}.json`, movie)
-        .then(() => function(response) {
+        .then((response) =>  {
           console.log("response", response);
           console.log("response.data", response.data);
+          // find the movie that you just updated in the array
+          // and replace it with the updated version of itself
+
+          var updatedMovie = response.data;
+
+          console.table($scope.movies);
+     
+        })
+        .catch((error) => {
+          console.error(error); 
         });
+
     }
 
     $scope.addMovie = function () {

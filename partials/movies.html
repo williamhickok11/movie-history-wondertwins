@@ -20,16 +20,16 @@
         <span class="starRating">
           <h5>Rating:</h5>
           <div class="rating">
-            <span ng-click="starRating(movie.id, 10)">☆</span>
-            <span ng-click="starRating(movie.id, 9)">☆</span>
-            <span ng-click="starRating(movie.id, 8)">☆</span>
-            <span ng-click="starRating(movie.id, 7)">☆</span>
-            <span ng-click="starRating(movie.id, 6)">☆</span>
-            <span ng-click="starRating(movie.id, 5)">☆</span>
-            <span ng-click="starRating(movie.id, 4)">☆</span>
-            <span ng-click="starRating(movie.id, 3)">☆</span>
-            <span ng-click="starRating(movie.id, 2)">☆</span>
-            <span ng-click="starRating(movie.id, 1)">☆</span>
+            <span ng-click="starRating(movie.id, 10)" ng-class="movie.rating >= 10 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 9)" ng-class="movie.rating >= 9 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 8)" ng-class="movie.rating >= 8 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 7)" ng-class="movie.rating >= 7 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 6)" ng-class="movie.rating >= 6 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 5)" ng-class="movie.rating >= 5 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 4)" ng-class="movie.rating >= 4 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 3)" ng-class="movie.rating >= 3 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 2)" ng-class="movie.rating >= 2 ? 'active' : '' ">☆</span>
+            <span ng-click="starRating(movie.id, 1)" ng-class="movie.rating >= 1 ? 'active' : '' ">☆</span>
           </div>
           <!-- <input id="rating1{{movie.id}}" type="radio" name="rating" value="1" ng-click="starRating(movie.id)">
           <label for="rating1"></label>

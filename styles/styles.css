@@ -7,6 +7,12 @@
   position: relative;
   width: 1.1em;
 }
+
+.rating > span.active:before {
+	content: "\2605";
+	position: absolute;
+}
+
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
   content: "\2605";
