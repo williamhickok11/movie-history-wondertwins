@@ -5,9 +5,11 @@
 			<!-- <div><img ng-src="{{rawMovie.Poster}}"></div> -->
 			<!-- <button class="waves-effect waves-light btn" ng-show="rawMovie.Title" ng-click="addMovie()">ADD</button> -->
       <div class="col m-3">
+        {{ rawMovie }}
         <div class="card hoverable">
           <div class="card-image">
             <img src="{{ rawMovie.Poster }}">
+            <img ng-src="{{ rawMovie.Poster }}">
             <!-- <span class="card-title">{{ rawMovie.Title }}</span> -->
           </div>
           <div class="card-content">
