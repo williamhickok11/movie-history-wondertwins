@@ -12,12 +12,12 @@ MovieHistory.controller("MoviesCtrl", [
 
   function ($scope, $routeParams, $location, movieFactory, authFactory, $http, firebaseURL) {
 
-    $scope.userID = authFactory.userID();
+    // $scope.userID = authFactory.userID();
 
     // used to ng-repeat in movies html (tracked movies)
     $scope.movies = [];
     // used to ng-show in movies html (untracked movie) and in the add movie function
-    $scope.rawMovie;
+    // $scope.rawMovie;
 
     // Invoke the promise that reads from Firebase
     movieFactory().then(
@@ -35,18 +35,18 @@ MovieHistory.controller("MoviesCtrl", [
     );
 
 
-    $scope.searchMovie = function() {
+    // $scope.searchMovie = function() {
 
-      console.log(`searchMovie Run`);
-      console.log(`$scope.search: `, $scope.search);
-      $http.get(`http://www.omdbapi.com/?t=${$scope.search}&y=&plot=short&r=json`)
-        .then(function(response){
-          $scope.rawMovie = response.data;
-          console.log(`$scope.rawMovie: `, $scope.rawMovie);
+    //   console.log(`searchMovie Run`);
+    //   console.log(`$scope.search: `, $scope.$parent.search);
+    //   $http.get(`http://www.omdbapi.com/?t=${$scope.$parent.search}&y=&plot=short&r=json`)
+    //     .then(function(response){
+    //       $scope.rawMovie = response.data;
+    //       console.log(`$scope.rawMovie: `, $scope.rawMovie);
 
-        });
-        $scope.search = '';
-    };
+    //     });
+    //     $scope.$parent.search = '';
+    // };
 
     $scope.starRating = function (movieId, num) {
       console.log("movieId", movieId);
@@ -76,13 +76,13 @@ MovieHistory.controller("MoviesCtrl", [
         // sending them to an API
 
         JSON.stringify({
-          name: $scope.rawMovie.Title,
-          year: $scope.rawMovie.Year,
-          actors: $scope.rawMovie.Actors,
+          name: $scope.$parent.rawMovie.Title,
+          year: $scope.$parent.rawMovie.Year,
+          actors: $scope.$parent.rawMovie.Actors,
           rating: 0,
           watched: false,
-          poster: $scope.rawMovie.Poster,
-          user: $scope.userID
+          poster: $scope.$parent.rawMovie.Poster,
+          user: $scope.$parent.userID
           })
 
       // The $http.post() method returns a promise, so you can use then()

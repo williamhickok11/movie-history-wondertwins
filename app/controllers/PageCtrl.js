@@ -13,6 +13,8 @@ MovieHistory.controller("PageCtrl",
     // Local variables
     let ref = new Firebase(firebaseURL);
 
+    $scope.search = 'jeff';
+
     $scope.isAuthenticated = () => {
       return authFactory.isAuthenticated();
     };
@@ -21,6 +23,21 @@ MovieHistory.controller("PageCtrl",
       console.log("Unauthenticating user");
       ref.unauth();
     };
+
+    $scope.userID = authFactory.userID();
+
+    $scope.searchMovie = function() {
+
+    console.log(`searchMovie Run`);
+    console.log(`$scope.search: `, $scope.search);
+    $http.get(`http://www.omdbapi.com/?t=${$scope.search}&y=&plot=short&r=json`)
+      .then(function(response){
+        $scope.rawMovie = response.data;
+        console.log(`$scope.rawMovie: `, $scope.rawMovie);
+
+      });
+      $scope.search = '';
+  };
 
   }
 ]);
